@@ -2,16 +2,18 @@ package com.gbz.algoGenetique;
 
 public class Individual {
 
-	static int defaultGeneLength = 64;
-	private final byte[] genes = new byte[defaultGeneLength];
+	static int defaultGeneLength = 8;
+	private final PossibleMouvement[] genes = new PossibleMouvement[defaultGeneLength];
 	// Cache
 	private int competence = 0;
 
 	// Create a random individual
 	public void generateIndividual() {
+		int lower = 0;
+		int higher = 4;
 		for (int i = 0; i < size(); i++) {
-			byte gene = (byte) Math.round(Math.random());
-			genes[i] = gene;
+			int random = (int) (Math.random() * (higher - lower)) + lower;
+			genes[i] = PossibleMouvementHelper.r.random();
 		}
 	}
 
@@ -21,11 +23,11 @@ public class Individual {
 		defaultGeneLength = length;
 	}
 
-	public byte getGene(int index) {
+	public PossibleMouvement getGene(int index) {
 		return genes[index];
 	}
 
-	public void setGene(int index, byte value) {
+	public void setGene(int index, PossibleMouvement value) {
 		genes[index] = value;
 		competence = 0;
 	}
@@ -46,8 +48,9 @@ public class Individual {
 	public String toString() {
 		String geneString = "";
 		for (int i = 0; i < size(); i++) {
-			geneString += getGene(i);
+			geneString += getGene(i) + " ";
 		}
+		geneString += "\n";
 		return geneString;
 	}
 }
