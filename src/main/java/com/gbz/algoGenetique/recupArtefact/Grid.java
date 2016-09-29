@@ -1,5 +1,6 @@
 package com.gbz.algoGenetique.recupArtefact;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -186,13 +187,92 @@ public class Grid {
 	}
 }
 
+enum Mouvement {
+	MOVE("MOVE"), BOMB("BOMB");
+
+	private String name = "";
+
+	Mouvement(String name) {
+		this.name = name;
+	}
+
+	public String toString() {
+		return name;
+	}
+}
+class Intention {
+	public Mouvement move;
+	public int x;
+	public int y;
+
+	public Intention() {
+
+	}
+
+	public Intention(Mouvement move, int x, int y) {
+		this.move = move;
+		this.x = x;
+		this.y = y;
+	}
+
+	public String toString() {
+		String s = move.toString() + " " + x + " " + y;
+		return s;
+	}
+
+}
+
 class Configuration {
+	public static final int ITEM_BOMB = 1;
+	public static final int ITEM_RANGE = 2;
+	
 	public static final int ENTITY_JOUEUR = 0;
 	public static final int ENTITY_BOMB = 1;
+	public static final int ENTITY_ITEM = 2;
 
 	public static int myId;
 	public static int height;
 	public static int width;
+}
+
+class Entities {
+	List<Entity> list;
+	List<Joueur> joueurs;
+	List<Bomb> bombs;
+	List<Item> items; 
+	
+
+	public Entities() {
+		list = new ArrayList<Entity>();
+		joueurs = new ArrayList<Joueur>();
+		bombs = new ArrayList<Bomb>();
+		items = new ArrayList<Item>();
+	}
+
+	public void addEntity(Entity e) {
+		list.add(e);
+		if (e instanceof Joueur) {
+			joueurs.add((Joueur) e);
+		}
+		if (e instanceof Bomb) {
+			bombs.add((Bomb) e);
+		}
+		if(e instanceof Item){
+			items.add((Item) e); 
+		}
+
+	}
+
+	public Joueur getMyPlayer() {
+		Joueur me = null;
+		for (Joueur joueur : joueurs) {
+			if (joueur.owner == Configuration.myId) {
+				me = joueur;
+			}
+		}
+		return me;
+	}
+
 }
 
 class Entity {
@@ -205,6 +285,53 @@ class Entity {
 	}
 
 }
+
+
+
+class ItemRange extends Item{
+
+	public ItemRange(int x, int y) {
+		super(x, y);
+	}
+	
+}
+
+class ItemBomb extends Item{
+
+	public ItemBomb(int x, int y) {
+		super(x, y);
+	}
+	
+}
+
+class Position {
+	public int x;
+	public int y;
+	public int value;
+
+	public Position(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Position other = (Position) obj;
+		return x == other.x && y == other.y;
+	}
+
+}
+
+
 
 class Tuile {
 
@@ -257,54 +384,3 @@ class Wall extends Tuile {
 		return false;
 	}
 }
-
-
-class Joueur extends Entity {
-	public int nbLeftBomb;
-	public int explodingRange;
-
-	public Joueur(int x, int y, int owner, int nbLeftBomb, int explodingRange) {
-		super(x, y, owner);
-		this.nbLeftBomb = nbLeftBomb;
-		this.explodingRange = explodingRange;
-	}
-}
-
-class Bomb extends Entity {
-	public int leftRoundToExplode;
-	public int explodingRange;
-
-	public Bomb(int x, int y, int owner, int leftRoundToExplode, int explodingRange) {
-		super(x, y, owner);
-		this.leftRoundToExplode = leftRoundToExplode;
-		this.explodingRange = explodingRange;
-	}
-}
-
-class Position {
-	public int x;
-	public int y;
-	public int value;
-
-	public Position(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Position other = (Position) obj;
-		return x == other.x && y == other.y;
-	}
-
-}
-

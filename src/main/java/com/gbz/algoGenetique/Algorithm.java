@@ -16,7 +16,7 @@ public class Algorithm {
 
 		// Keep our best individual
 		if (elitism) {
-			newPopulation.saveIndividual(0, pop.getMoreCompetent());
+			newPopulation.saveIndividual(0, pop.getMostCompetent());
 		}
 
 		// Crossover population
@@ -80,7 +80,7 @@ public class Algorithm {
 			tournament.saveIndividual(i, pop.getIndividual(randomId));
 		}
 		// Get the fittest
-		Individual fittest = tournament.getMoreCompetent();
+		Individual fittest = tournament.getMostCompetent();
 		return fittest;
 	}
 }
