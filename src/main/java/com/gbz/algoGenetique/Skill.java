@@ -1,5 +1,7 @@
 package com.gbz.algoGenetique;
 
+import com.gbz.algoGenetique.recupArtefact.*;
+
 public class Skill {
 
 	static PossibleMouvement[] solution = new PossibleMouvement[8];
@@ -38,6 +40,11 @@ public class Skill {
 		return skill;
 	}
 
+	public static int getSkill(Individual individual, Grid grid){
+		return 0;
+		
+	}
+	
 	// Get optimum skill
 	static int getMaxSkill() {
 		int maxSkill = solution.length;

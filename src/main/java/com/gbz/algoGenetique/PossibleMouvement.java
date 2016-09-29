@@ -2,7 +2,7 @@ package com.gbz.algoGenetique;
 
 public enum PossibleMouvement {
 
-	UP, RIGHT, DOWN, LEFT, BOMB;
+	UP, RIGHT, DOWN, LEFT, BOMB, IDLE;
 
 	@Override
 	public String toString() {
@@ -22,6 +22,9 @@ public enum PossibleMouvement {
 			break;
 		case BOMB:
 			res = "BOMB";
+			break;
+		case IDLE:
+			res = "IDLE";
 			break;
 		default:
 			break;
