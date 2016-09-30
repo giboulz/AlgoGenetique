@@ -222,18 +222,7 @@ class Intention {
 
 }
 
-class Configuration {
-	public static final int ITEM_BOMB = 1;
-	public static final int ITEM_RANGE = 2;
-	
-	public static final int ENTITY_JOUEUR = 0;
-	public static final int ENTITY_BOMB = 1;
-	public static final int ENTITY_ITEM = 2;
 
-	public static int myId;
-	public static int height;
-	public static int width;
-}
 
 class Entities {
 	List<Entity> list;
@@ -304,83 +293,14 @@ class ItemBomb extends Item{
 	
 }
 
-class Position {
-	public int x;
-	public int y;
-	public int value;
-
-	public Position(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Position other = (Position) obj;
-		return x == other.x && y == other.y;
-	}
-
-}
 
 
 
-class Tuile {
 
-	public boolean box;
-	public boolean walkable;
 
-	public Tuile() {
 
-	}
 
-	public boolean isBox() {
-		return false;
-	}
 
-	public boolean isWalkable() {
-		return false;
-	}
-}
 
-class Caisse extends Tuile {
-	public String toString() {
-		return "0";
-	}
 
-	public boolean isBox() {
-		return true;
-	}
-}
 
-class Sol extends Tuile {
-	public String toString() {
-		return ".";
-	}
-
-	public boolean isWalkable() {
-		return true;
-	}
-}
-
-class Wall extends Tuile {
-	public String toString() {
-		return "X";
-	}
-
-	public boolean isBox() {
-		return false;
-	}
-	
-	public boolean isWalkable() {
-		return false;
-	}
-}

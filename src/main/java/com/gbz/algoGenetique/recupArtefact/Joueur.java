@@ -12,13 +12,4 @@ public class Joueur extends Entity {
 	}
 }
 
-class Bomb extends Entity {
-	public int leftRoundToExplode;
-	public int explodingRange;
 
-	public Bomb(int x, int y, int owner, int leftRoundToExplode, int explodingRange) {
-		super(x, y, owner);
-		this.leftRoundToExplode = leftRoundToExplode;
-		this.explodingRange = explodingRange;
-	}
-}
