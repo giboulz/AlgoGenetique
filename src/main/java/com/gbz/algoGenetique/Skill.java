@@ -1,19 +1,21 @@
 package com.gbz.algoGenetique;
 
+import com.gbz.algoGenetique.recupArtefact.*;
+
 public class Skill {
 
-	static byte[] solution = new byte[64];
+	static PossibleMouvement[] solution = new PossibleMouvement[8];
 
 	/* Public methods */
 	// Set a candidate solution as a byte array
-	public static void setSolution(byte[] newSolution) {
+	public static void setSolution(PossibleMouvement[] newSolution) {
 		solution = newSolution;
 	}
 
 	// To make it easier we can use this method to set our candidate solution
 	// with string of 0s and 1s
-	static void setSolution(String newSolution) {
-		solution = new byte[newSolution.length()];
+	/*static void setSolution(String newSolution) {
+		solution = new PossibleMouvement[newSolution.length()];
 		// Loop through each character of our string and save it in our byte
 		// array
 		for (int i = 0; i < newSolution.length(); i++) {
@@ -24,7 +26,7 @@ public class Skill {
 				solution[i] = 0;
 			}
 		}
-	}
+	}*/
 
 	// Compute skill by comparing it to our candidate solution
 	static int getSkill(Individual individual) {
@@ -38,6 +40,11 @@ public class Skill {
 		return skill;
 	}
 
+	public static int getSkill(Individual individual, Grid grid){
+		return 0;
+		
+	}
+	
 	// Get optimum skill
 	static int getMaxSkill() {
 		int maxSkill = solution.length;

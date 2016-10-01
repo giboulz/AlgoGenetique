@@ -26,15 +26,15 @@ public class Population {
 		return individuals[index];
 	}
 
-	public Individual getMoreCompetent() {
-		Individual moreCompetent = individuals[0];
+	public Individual getMostCompetent() {
+		Individual mostCompetent = individuals[0];
 		// Loop through individuals to find more competent
 		for (int i = 0; i < size(); i++) {
-			if (moreCompetent.getCompetence() <= getIndividual(i).getCompetence()) {
-				moreCompetent = getIndividual(i);
+			if (mostCompetent.getCompetence() <= getIndividual(i).getCompetence()) {
+				mostCompetent = getIndividual(i);
 			}
 		}
-		return moreCompetent;
+		return mostCompetent;
 	}
 
 	/* Public methods */
