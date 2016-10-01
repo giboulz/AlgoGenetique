@@ -23,6 +23,28 @@ public class Grid {
 
 	}
 
+	public Grid(Grid g){
+		playerMobility = new HashMap<Integer, boolean[][]>();
+		grid = new Tuile[Configuration.width][Configuration.height];
+		for (int i = 0; i < Configuration.width; i++) {
+			for (int y = 0; y < Configuration.height; y++) {
+				Tuile t =g.grid[i][y];  
+				if(t instanceof Sol){
+					grid[i][y] = new Sol(); 
+				}
+				if(t instanceof Caisse){
+					grid[i][y] = new Caisse(); 
+				}
+				if(t instanceof Wall){
+					grid[i][y] = new Wall(); 
+				}
+				 
+			}
+		}
+		
+	}
+	
+	
 	public void reduceBombingSpotToWalkablePath(int playerId, int[][] res) {
 		boolean[][] walkablePathForPlayer = playerMobility.get(playerId);
 		if (walkablePathForPlayer != null) {
@@ -222,48 +244,6 @@ class Intention {
 
 }
 
-
-
-class Entities {
-	List<Entity> list;
-	List<Joueur> joueurs;
-	List<Bomb> bombs;
-	List<Item> items; 
-	
-
-	public Entities() {
-		list = new ArrayList<Entity>();
-		joueurs = new ArrayList<Joueur>();
-		bombs = new ArrayList<Bomb>();
-		items = new ArrayList<Item>();
-	}
-
-	public void addEntity(Entity e) {
-		list.add(e);
-		if (e instanceof Joueur) {
-			joueurs.add((Joueur) e);
-		}
-		if (e instanceof Bomb) {
-			bombs.add((Bomb) e);
-		}
-		if(e instanceof Item){
-			items.add((Item) e); 
-		}
-
-	}
-
-	public Joueur getMyPlayer() {
-		Joueur me = null;
-		for (Joueur joueur : joueurs) {
-			if (joueur.owner == Configuration.myId) {
-				me = joueur;
-			}
-		}
-		return me;
-	}
-
-}
-
 class Entity {
 	public Position pos;
 	public int owner;
@@ -277,21 +257,9 @@ class Entity {
 
 
 
-class ItemRange extends Item{
 
-	public ItemRange(int x, int y) {
-		super(x, y);
-	}
-	
-}
 
-class ItemBomb extends Item{
 
-	public ItemBomb(int x, int y) {
-		super(x, y);
-	}
-	
-}
 
 
 

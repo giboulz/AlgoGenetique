@@ -1,6 +1,6 @@
 package com.gbz.algoGenetique.recupArtefact;
 
-class Caisse extends Tuile {
+public class Caisse extends Tuile {
 	public Caisse(){
 		super(); 
 		this.stopDeflagration = true; 

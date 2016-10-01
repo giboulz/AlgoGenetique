@@ -1,7 +1,16 @@
 package com.gbz.algoGenetique;
 
+import com.gbz.algoGenetique.recupArtefact.Entities;
+import com.gbz.algoGenetique.recupArtefact.Grid;
+
 public class Algorithm {
 
+	
+	/*gaming parameters*/
+	public static Grid grid; 
+	public static Entities entities; 
+	public static int idPlayer; 
+	
 	/* GA parameters */
 	private static final double uniformRate = 0.5;
 	private static final double mutationRate = 0.00015;
@@ -12,7 +21,7 @@ public class Algorithm {
 
 	// Evolve a population
 	public static Population evolvePopulation(Population pop) {
-		Population newPopulation = new Population(pop.size(), false);
+		Population newPopulation = new Population(pop.size(), false, grid, entities, idPlayer);
 
 		// Keep our best individual
 		if (elitism) {
@@ -45,7 +54,7 @@ public class Algorithm {
 
 	// Crossover individuals
 	private static Individual crossover(Individual indiv1, Individual indiv2) {
-		Individual newSol = new Individual();
+		Individual newSol = new Individual(grid, entities, idPlayer);
 		// Loop through genes
 		for (int i = 0; i < indiv1.size(); i++) {
 			// Crossover
@@ -73,7 +82,7 @@ public class Algorithm {
 	// Select individuals for crossover
 	private static Individual tournamentSelection(Population pop) {
 		// Create a tournament population
-		Population tournament = new Population(tournamentSize, false);
+		Population tournament = new Population(tournamentSize, false, grid, entities, idPlayer);
 		// For each place in the tournament get a random individual
 		for (int i = 0; i < tournamentSize; i++) {
 			int randomId = (int) (Math.random() * pop.size());

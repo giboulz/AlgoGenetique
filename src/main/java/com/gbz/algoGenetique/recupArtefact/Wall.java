@@ -1,6 +1,6 @@
 package com.gbz.algoGenetique.recupArtefact;
 
-class Wall extends Tuile {
+public class Wall extends Tuile {
 	
 	public Wall(){
 		super(); 
@@ -18,3 +18,4 @@ class Wall extends Tuile {
 	public boolean isWalkable() {
 		return false;
 	}
+}

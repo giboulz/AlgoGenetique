@@ -1,5 +1,8 @@
 package com.gbz.algoGenetique;
 
+import com.gbz.algoGenetique.recupArtefact.Entities;
+import com.gbz.algoGenetique.recupArtefact.Grid;
+
 public class Population {
 
 	Individual[] individuals;
@@ -8,13 +11,13 @@ public class Population {
 	 * Constructor
 	 */
 	// Create a population
-	public Population(int populationSize, boolean initialise) {
+	public Population(int populationSize, boolean initialise, Grid grid, Entities entities, int idPlayer) {
 		individuals = new Individual[populationSize];
 		// Initialise population
 		if (initialise) {
 			// Loop and create individuals
 			for (int i = 0; i < size(); i++) {
-				Individual newIndividual = new Individual();
+				Individual newIndividual = new Individual(grid, entities, idPlayer);
 				newIndividual.generateIndividual();
 				saveIndividual(i, newIndividual);
 			}

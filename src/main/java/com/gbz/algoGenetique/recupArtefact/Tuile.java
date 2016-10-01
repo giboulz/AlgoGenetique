@@ -3,6 +3,7 @@ package com.gbz.algoGenetique.recupArtefact;
 public class Tuile {
 
 
+	public boolean hasBomb;
 	public boolean hasItem;
 	public boolean box;
 	public boolean walkable;
@@ -12,6 +13,7 @@ public class Tuile {
 		hasItem = false; 
 		stopDeflagration = false; 
 	}
+
 
 	public boolean isBox() {
 		return false;

@@ -4,50 +4,10 @@ import com.gbz.algoGenetique.recupArtefact.*;
 
 public class Skill {
 
-	static PossibleMouvement[] solution = new PossibleMouvement[8];
+	public static int getSkill(Individual individual, Grid grid, Entities entities, int myId) {
 
-	/* Public methods */
-	// Set a candidate solution as a byte array
-	public static void setSolution(PossibleMouvement[] newSolution) {
-		solution = newSolution;
+		return GridHelper.simulateGridForMultipleMouvement(grid, individual.genes, entities, myId);
+
 	}
 
-	// To make it easier we can use this method to set our candidate solution
-	// with string of 0s and 1s
-	/*static void setSolution(String newSolution) {
-		solution = new PossibleMouvement[newSolution.length()];
-		// Loop through each character of our string and save it in our byte
-		// array
-		for (int i = 0; i < newSolution.length(); i++) {
-			String character = newSolution.substring(i, i + 1);
-			if (character.contains("0") || character.contains("1")) {
-				solution[i] = Byte.parseByte(character);
-			} else {
-				solution[i] = 0;
-			}
-		}
-	}*/
-
-	// Compute skill by comparing it to our candidate solution
-	static int getSkill(Individual individual) {
-		int skill = 0;
-		// Loop through our individuals genes and compare them to our candidates
-		for (int i = 0; i < individual.size() && i < solution.length; i++) {
-			if (individual.getGene(i) == solution[i]) {
-				skill++;
-			}
-		}
-		return skill;
-	}
-
-	public static int getSkill(Individual individual, Grid grid){
-		return 0;
-		
-	}
-	
-	// Get optimum skill
-	static int getMaxSkill() {
-		int maxSkill = solution.length;
-		return maxSkill;
-	}
 }

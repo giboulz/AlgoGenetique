@@ -9,6 +9,6 @@ public class Configuration {
 	public static final int ENTITY_ITEM = 2;
 
 	public static int myId;
-	public static int height;
-	public static int width;
+	public static int height = 11;
+	public static int width = 13;
 }
